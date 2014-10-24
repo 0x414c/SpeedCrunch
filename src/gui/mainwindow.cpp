@@ -154,6 +154,7 @@ void MainWindow::createActions()
     m_actions.settingsDisplayColorSchemeStandard = new QAction(this);
     m_actions.settingsDisplayColorSchemeSublime = new QAction(this);
     m_actions.settingsDisplayColorSchemeTerminal = new QAction(this);
+    m_actions.settingsDisplayColorSchemeEighties = new QAction(this);
     m_actions.settingsDisplayFont = new QAction(this);
     m_actions.settingsLanguage = new QAction(this);
     m_actions.settingsRadixCharComma = new QAction(this);
@@ -204,6 +205,7 @@ void MainWindow::createActions()
     m_actions.settingsDisplayColorSchemeStandard->setCheckable(true);
     m_actions.settingsDisplayColorSchemeSublime->setCheckable(true);
     m_actions.settingsDisplayColorSchemeTerminal->setCheckable(true);
+    m_actions.settingsDisplayColorSchemeEighties->setCheckable(true);
     m_actions.settingsRadixCharComma->setCheckable(true);
     m_actions.settingsRadixCharDefault->setCheckable(true);
     m_actions.settingsRadixCharDot->setCheckable(true);
@@ -237,6 +239,7 @@ void MainWindow::createActions()
     m_actions.settingsDisplayColorSchemeStandard->setData(SyntaxHighlighter::Standard);
     m_actions.settingsDisplayColorSchemeSublime->setData(SyntaxHighlighter::Sublime);
     m_actions.settingsDisplayColorSchemeTerminal->setData(SyntaxHighlighter::Terminal);
+    m_actions.settingsDisplayColorSchemeEighties->setData(SyntaxHighlighter::Eighties);
 }
 
 void MainWindow::retranslateText()
@@ -367,6 +370,7 @@ void MainWindow::setActionsText()
     m_actions.settingsDisplayColorSchemeStandard->setText(MainWindow::tr("Standard"));
     m_actions.settingsDisplayColorSchemeSublime->setText(MainWindow::tr("Sublime"));
     m_actions.settingsDisplayColorSchemeTerminal->setText(MainWindow::tr("Terminal"));
+    m_actions.settingsDisplayColorSchemeEighties->setText(MainWindow::tr("Eighties"));
     m_actions.settingsDisplayFont->setText(MainWindow::tr("&Font..."));
     m_actions.settingsLanguage->setText(MainWindow::tr("&Language..."));
 
@@ -410,6 +414,7 @@ void MainWindow::createActionGroups()
     m_actionGroups.colorScheme->addAction(m_actions.settingsDisplayColorSchemeStandard);
     m_actionGroups.colorScheme->addAction(m_actions.settingsDisplayColorSchemeSublime);
     m_actionGroups.colorScheme->addAction(m_actions.settingsDisplayColorSchemeTerminal);
+    m_actionGroups.colorScheme->addAction(m_actions.settingsDisplayColorSchemeEighties);
 
     m_actionGroups.digitGrouping = new QActionGroup(this);
     m_actionGroups.digitGrouping->addAction(m_actions.settingsBehaviorDigitGroupingNone);
@@ -562,6 +567,7 @@ void MainWindow::createMenus()
     m_menus.colorScheme->addAction(m_actions.settingsDisplayColorSchemeStandard);
     m_menus.colorScheme->addAction(m_actions.settingsDisplayColorSchemeSublime);
     m_menus.colorScheme->addAction(m_actions.settingsDisplayColorSchemeTerminal);
+    m_menus.colorScheme->addAction(m_actions.settingsDisplayColorSchemeEighties);
     m_menus.display->addAction(m_actions.settingsDisplayFont);
 
     m_menus.settings->addAction(m_actions.settingsLanguage);
@@ -1063,12 +1069,20 @@ void MainWindow::applySettings()
     m_widgets.display->setFont(font);
     m_widgets.editor->setFont(font);
 
-    if (m_settings->colorScheme == SyntaxHighlighter::Standard)
-        m_actions.settingsDisplayColorSchemeStandard->setChecked(true);
-    else if (m_settings->colorScheme == SyntaxHighlighter::Sublime)
-        m_actions.settingsDisplayColorSchemeSublime->setChecked(true);
-    else if (m_settings->colorScheme == SyntaxHighlighter::Terminal)
-        m_actions.settingsDisplayColorSchemeTerminal->setChecked(true);
+    switch (m_settings->colorScheme) {
+        case SyntaxHighlighter::Standard: default:
+            m_actions.settingsDisplayColorSchemeStandard->setChecked(true);
+            break;
+        case SyntaxHighlighter::Sublime:
+            m_actions.settingsDisplayColorSchemeSublime->setChecked(true);
+            break;
+        case SyntaxHighlighter::Terminal:
+            m_actions.settingsDisplayColorSchemeTerminal->setChecked(true);
+            break;
+        case SyntaxHighlighter::Eighties:
+            m_actions.settingsDisplayColorSchemeEighties->setChecked(true);
+            break;
+    }
 
     m_actions.viewStatusBar->setChecked(m_settings->statusBarVisible);
 

@@ -285,6 +285,7 @@ private:
         QAction* settingsDisplayColorSchemeStandard;
         QAction* settingsDisplayColorSchemeSublime;
         QAction* settingsDisplayColorSchemeTerminal;
+        QAction* settingsDisplayColorSchemeEighties;
         QAction* settingsRadixCharDefault;
         QAction* settingsRadixCharDot;
         QAction* settingsRadixCharComma;

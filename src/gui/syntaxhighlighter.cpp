@@ -50,6 +50,14 @@ void SyntaxHighlighter::setColorScheme(SyntaxHighlighter::ColorScheme id)
         SH(Comment, 65, 25, 55);    SH(Separator, 100, 80, 123);
         SH(Matched, 100, 80, 123);  SH(Background, 48, 10, 36);
         break;
+    case SyntaxHighlighter::Eighties:
+        SH(Cursor, 255, 255, 255);  SH(Function, 102, 153, 204);  SH(EditorFade, 57, 57, 57);
+        SH(Number, 249, 145, 87);   SH(Operator, 102, 204, 204);
+        SH(Parens, 204, 204, 204);  SH(Variable, 242, 119, 122);
+        SH(Result, 153, 204, 153);  SH(ScrollBar, 142, 142, 142);
+        SH(Comment, 153, 153, 153); SH(Separator, 81, 81, 81);
+        SH(Matched, 255, 204, 102); SH(Background, 45, 45, 45);
+        break;
     case SyntaxHighlighter::Standard:
     default:
         SH(Cursor, 255, 100, 100);  SH(Function, 74, 154, 7);     SH(EditorFade, 220, 220, 220);
