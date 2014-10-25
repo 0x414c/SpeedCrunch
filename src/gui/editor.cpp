@@ -132,7 +132,7 @@ QSize Editor::sizeHint() const
     ensurePolished();
     const QFontMetrics metrics = fontMetrics();
     const int width = metrics.width('x') * 10;
-    const int height = metrics.lineSpacing() + 6;
+    const int height = metrics.lineSpacing() + 9;
     return QSize(width, height);
 }
 
@@ -793,7 +793,6 @@ void Editor::rehighlight()
     setStyleSheet(QString(
         "QPlainTextEdit {"
         "   background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 %2, stop: 1 %1);"
-        "   padding: -1px 0px 1px 0px;"
         "}"
     ).arg(m_highlighter->colorForRole(SyntaxHighlighter::Background).name())
      .arg(m_highlighter->colorForRole(SyntaxHighlighter::EditorFade).name())
